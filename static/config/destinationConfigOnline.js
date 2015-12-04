@@ -106,6 +106,13 @@
                 "path":"/archi",
                 "order": 3
             },
+            "originalroadrunner":{
+                "xtype": "geobatch_run_local_form",
+                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_opensdi_config_dir\\targets",
+                "fileRegex": "\\.zip$",
+                "path":"/archi_da_segmentare",
+                "order": 6
+            },
 			"roadcalculator":{
                 "xtype": "geobatch_run_roads_processing",
 				"wfsURL": "http://destination.geo-solutions.it/geoserver-ingestion/ows", 
@@ -129,7 +136,6 @@
                 "order": 5
             }
 
-           
          },
          "actionTarget":{
            "target": "north.tbar",

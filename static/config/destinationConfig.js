@@ -3,8 +3,8 @@
    "socialUrl":"",
    "start":0,
    "limit":20,
-   "geoStoreBase": "http://localhost:8080/geostore/rest/",
-   "adminUrl": "http://localhost:8080/admin/",
+   "geoStoreBase": "http://localhost:9010/geostore/rest/",
+   "adminUrl": "http://localhost:9020/opensdi2-manager/",
    "msmTimeout":30000,
    "twitter":{
       "via":"geosolutions_it",
@@ -75,15 +75,15 @@
         }
     },{
          "ptype": "mxp_geobatch_flows",
-         "geoBatchRestURL":"http://localhost:8080/geobatch/rest/",
-         "geoStoreRestURL":"http://localhost:8080/geostore/rest/",
+         "geoBatchRestURL":"http://localhost:9000/geobatch/rest/",
+         "geoStoreRestURL":"http://localhost:9010/geostore/rest/",
 		 "skipFlowsNotInRunConfigs": true,
 		 "showConsumersDetails": true,
          "forceOrder": true,
 		 "consumersPlugins": [
 			{
 				"ptype": "importmetadata",
-				"wfsURL": "http://localhost:8080/geoserver/ows", 
+				"wfsURL": "http://localhost:9030/geoserver/ows", 
                 "metadataFeature": "import_metadata", 
                 "metadataErrorsFeature": "import_metadata_errors", 
                 "metadataNS": "destination",
@@ -94,28 +94,35 @@
          "runConfigs": {
             "targetrunner":{
                 "xtype": "geobatch_run_local_form",
-                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_ingestion",
+                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_opensdi_config_dir\\targets",
                 "fileRegex": "\\.zip$",
                 "path":"/bersagli",
                 "order": 1
             },
 			"pterrunner":{
                 "xtype": "geobatch_run_local_form",
-                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_ingestion",
+                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_opensdi_config_dir\\targets",
                 "fileRegex": "\\.zip$",
                 "path":"/pter",
                 "order": 2
             },
-            "originalroadrunner":{
+            "roadrunner":{
                 "xtype": "geobatch_run_local_form",
-                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_ingestion",
+                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_opensdi_config_dir\\targets",
                 "fileRegex": "\\.zip$",
                 "path":"/archi",
                 "order": 3
             },
+            "originalroadrunner":{
+                "xtype": "geobatch_run_local_form",
+                "baseDir": "G:\\work\\DestinationPlus\\server\\destination_opensdi_config_dir\\targets",
+                "fileRegex": "\\.zip$",
+                "path":"/archi_da_segmentare",
+                "order": 6
+            },
 			"roadcalculator":{
                 "xtype": "geobatch_run_roads_processing",
-				"wfsURL": "http://localhost:8080/geoserver/ows", 
+				"wfsURL": "http://localhost:9030/geoserver/ows", 
                 "partnerFeature": "siig_d_partner", 
                 "partnerNS": "destination",
 				"metadataFeature": "import_metadata", 
@@ -126,7 +133,7 @@
             },
 			"migration":{
                 "xtype": "geobatch_run_migration",
-				"wfsURL": "http://localhost:8080/geoserver/ows", 
+				"wfsURL": "http://localhost:9030/geoserver/ows", 
                 "partnerFeature": "siig_d_partner", 
                 "partnerNS": "destination",
 				"metadataFeature": "import_metadata", 
@@ -136,7 +143,6 @@
                 "order": 5
             }
 
-           
          },
          "actionTarget":{
            "target": "north.tbar",
@@ -162,6 +168,5 @@
         "showQRCode":true,
         "qrCodeSize":128,
         "appDownloadUrl":"http://demo.geo-solutions.it/share/mapstoremobile/MapStoreMobile.apk"
-
 	}
 }
